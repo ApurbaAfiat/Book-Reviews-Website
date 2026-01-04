@@ -1,0 +1,5 @@
+cURL Command:
+curl -s https://api.github.com/repos/ApurbaAfiat/Book-Reviews-Website | jq '.parent.full_name'
+
+Output:
+"ibm-developer-skills-network/expressBookReviews"
