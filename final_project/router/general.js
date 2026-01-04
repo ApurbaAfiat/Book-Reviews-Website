@@ -159,6 +159,35 @@ public_users.get('/title/:title',function (req, res) {
   }
 });
 
+// Get book details based on title using async-await with axios
+public_users.get('/title-async/:title', async function (req, res) {
+  const title = req.params.title;
+  try {
+    const response = await axios.get(`http://127.0.0.1:5000/title/${encodeURIComponent(title)}`);
+    res.send(JSON.stringify(response.data, null, 4));
+  } catch (error) {
+    res.status(error.response?.status || 500).json({
+      message: "Error fetching books by title", 
+      error: error.response?.data?.message || error.message
+    });
+  }
+});
+
+// Get book details based on title using Promise callbacks with axios
+public_users.get('/title-promise/:title', function (req, res) {
+  const title = req.params.title;
+  axios.get(`http://127.0.0.1:5000/title/${encodeURIComponent(title)}`)
+    .then(response => {
+      res.send(JSON.stringify(response.data, null, 4));
+    })
+    .catch(error => {
+      res.status(error.response?.status || 500).json({
+        message: "Error fetching books by title", 
+        error: error.response?.data?.message || error.message
+      });
+    });
+});
+
 //  Get book review
 public_users.get('/review/:isbn',function (req, res) {
   const isbn = req.params.isbn;
