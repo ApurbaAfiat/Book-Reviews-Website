@@ -111,6 +111,35 @@ public_users.get('/author/:author',function (req, res) {
   }
 });
 
+// Get book details based on author using async-await with axios
+public_users.get('/author-async/:author', async function (req, res) {
+  const author = req.params.author;
+  try {
+    const response = await axios.get(`http://127.0.0.1:5000/author/${encodeURIComponent(author)}`);
+    res.send(JSON.stringify(response.data, null, 4));
+  } catch (error) {
+    res.status(error.response?.status || 500).json({
+      message: "Error fetching books by author", 
+      error: error.response?.data?.message || error.message
+    });
+  }
+});
+
+// Get book details based on author using Promise callbacks with axios
+public_users.get('/author-promise/:author', function (req, res) {
+  const author = req.params.author;
+  axios.get(`http://127.0.0.1:5000/author/${encodeURIComponent(author)}`)
+    .then(response => {
+      res.send(JSON.stringify(response.data, null, 4));
+    })
+    .catch(error => {
+      res.status(error.response?.status || 500).json({
+        message: "Error fetching books by author", 
+        error: error.response?.data?.message || error.message
+      });
+    });
+});
+
 // Get all books based on title
 public_users.get('/title/:title',function (req, res) {
   const title = req.params.title;
