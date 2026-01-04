@@ -1,0 +1,9 @@
+cURL Commands:
+# Step 1: Login to get session cookie
+curl -X POST -H "Content-Type: application/json" -d "{\"username\":\"deleteuser\",\"password\":\"delpass123\"}" -c cookies.txt http://127.0.0.1:5000/customer/login
+
+# Step 2: Delete the review using the session cookie
+curl -X DELETE -b cookies.txt http://127.0.0.1:5000/customer/auth/review/5
+
+Output:
+{"message":"Review successfully deleted"}

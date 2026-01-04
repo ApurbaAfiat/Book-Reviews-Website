@@ -1,0 +1,5 @@
+cURL Command:
+curl -X POST -H "Content-Type: application/json" -d "{\"username\":\"testuser\",\"password\":\"testpass123\"}" http://127.0.0.1:5000/customer/login
+
+Output:
+{"message":"User successfully logged in"}

@@ -1,0 +1,11 @@
+cURL Command:
+curl.exe http://127.0.0.1:5000/author/Jane%20Austen
+
+Output:
+{
+    "8": {
+        "author": "Jane Austen",
+        "title": "Pride and Prejudice",
+        "reviews": {}
+    }
+}

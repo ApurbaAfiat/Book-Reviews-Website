@@ -1,0 +1,9 @@
+cURL Commands:
+# Step 1: Login to get session cookie
+curl -X POST -H "Content-Type: application/json" -d "{\"username\":\"reviewer1\",\"password\":\"pass123\"}" -c cookies.txt http://127.0.0.1:5000/customer/login
+
+# Step 2: Add a review using the session cookie
+curl -X PUT -b cookies.txt "http://127.0.0.1:5000/customer/auth/review/1?review=This%20is%20a%20great%20book!"
+
+Output:
+{"message":"Review successfully posted/updated"}
